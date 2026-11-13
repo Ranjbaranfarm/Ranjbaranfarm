@@ -1,5 +1,4 @@
 const TELEGRAM_USERNAME = "Persila1";
-
 function faToEn(str) {
   if (!str) return "";
   return str.toString().replace(/[۰-۹]/g, function(d) {
@@ -8,13 +7,11 @@ function faToEn(str) {
     return "٠١٢٣٤٥٦٧٨٩".indexOf(d);
   });
 }
-
 function getWhatsNumber(title) {
   if (title.indexOf("گوساله") !== -1) return "989123175163";
   if (title.indexOf("همکاری") !== -1) return "989358218321";
   return "989123359849";
 }
-
 function getLabel(el) {
   var lab = el.closest("label");
   if (lab) {
@@ -26,7 +23,6 @@ function getLabel(el) {
   }
   return el.placeholder || el.name || "مورد";
 }
-
 function collectForm(form) {
   var fields = form.querySelectorAll("input, textarea, select");
   var lines = [];
@@ -40,7 +36,6 @@ function collectForm(form) {
   });
   return { lines: lines, mobile: mobile };
 }
-
 function sendToChannel(form, title, channel) {
   var data = collectForm(form);
   var msgBox = form.querySelector("#ok, .ok");
@@ -71,18 +66,15 @@ function sendToChannel(form, title, channel) {
   form.reset();
   return false;
 }
-
 function orderMsg(e, title, channel) {
   e.preventDefault();
   return sendToChannel(e.target, title, channel || "whatsapp");
 }
-
 function sendTelegramFrom(formId, title) {
   var form = document.getElementById(formId);
   if (!form) return false;
   return sendToChannel(form, title, "telegram");
 }
-
 document.addEventListener("click", function(e) {
   var nav = document.getElementById("nav");
   if (nav && nav.classList.contains("open")) {
